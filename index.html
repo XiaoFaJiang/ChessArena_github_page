@@ -562,8 +562,19 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>(1469, 1762)</td>
               <td>28</td>
             </tr>
-            <tr style="background-color: #e8f5e9;">
+            <tr>
               <td>14</td>
+              <td>Seed-Coder-8B-Chess</td>
+              <td>Blitz</td>
+              <td>✓</td>
+              <td>1614</td>
+              <td>63</td>
+              <td>(1490, 1738)</td>
+              <td>30</td>
+            </tr>
+            
+            <tr style="background-color: #e8f5e9;">
+              <td>15</td>
               <td>Qwen3-8B-SFT-Stage2 (Ours)</td>
               <td>Blitz</td>
               <td>✓</td>
@@ -573,7 +584,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>40</td>
             </tr>
             <tr>
-              <td>15</td>
+              <td>16</td>
               <td>Claude-3.7-Sonnet</td>
               <td>Blindfold</td>
               <td>✗</td>
@@ -583,7 +594,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>28</td>
             </tr>
             <tr>
-              <td>16</td>
+              <td>17</td>
               <td>GPT-4.1</td>
               <td>Bullet</td>
               <td>✓</td>
@@ -593,7 +604,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>54</td>
             </tr>
             <tr>
-              <td>17</td>
+              <td>18</td>
               <td>DeepSeek-V3</td>
               <td>Blitz</td>
               <td>✓</td>
@@ -603,7 +614,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>174</td>
             </tr>
             <tr style="background-color: #fff3e0;">
-              <td><strong>18</strong></td>
+              <td><strong>19</strong></td>
               <td><strong>Random Player (Weak baseline)</strong></td>
               <td>-</td>
               <td>✓</td>
@@ -613,7 +624,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>284</td>
             </tr>
             <tr>
-              <td>19</td>
+              <td>20</td>
               <td>Qwen3-235B-A22B</td>
               <td>Blitz</td>
               <td>✓</td>
@@ -623,7 +634,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>146</td>
             </tr>
             <tr>
-              <td>20</td>
+              <td>21</td>
               <td>DeepSeek-V3</td>
               <td>Blitz</td>
               <td>✗</td>
@@ -633,7 +644,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>48</td>
             </tr>
             <tr>
-              <td>21</td>
+              <td>22</td>
               <td>DeepSeek-V3</td>
               <td>Blindfold</td>
               <td>✓</td>
@@ -643,7 +654,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>24</td>
             </tr>
             <tr>
-              <td>22</td>
+              <td>23</td>
               <td>DeepSeek-V3</td>
               <td>Bullet</td>
               <td>✓</td>
@@ -653,7 +664,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>22</td>
             </tr>
             <tr>
-              <td>23</td>
+              <td>24</td>
               <td>Qwen3-235B-A22B</td>
               <td>Bullet</td>
               <td>✓</td>
@@ -663,7 +674,7 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>46</td>
             </tr>
             <tr>
-              <td>24</td>
+              <td>25</td>
               <td>Qwen3-8B</td>
               <td>Blitz</td>
               <td>✓</td>
@@ -671,6 +682,16 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
               <td>65</td>
               <td>(1205, 1463)</td>
               <td>32</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>Seed-Coder-8B-Instruct</td>
+              <td>Blitz</td>
+              <td>✓</td>
+              <td>1009</td>
+              <td>106</td>
+              <td>(800, 1218)</td>
+              <td>30</td>
             </tr>
           </tbody>
         </table>
@@ -710,13 +731,344 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
   </div>
 </section>
 
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">🎯 Fine-Grained Evaluation</h2>
+    <div class="content has-text-justified">
+      <p>
+        Observing the issues models encountered in the main chess competitions, we designed three fine-grained evaluation tasks to analyze specific weaknesses:
+      </p>
+      <ul>
+        <li><strong>Basic Understanding:</strong> Assesses the model's fundamental comprehension of the chessboard state.</li>
+        <li><strong>Move Selection:</strong> Evaluates the model's single-step move choice ability.</li>
+        <li><strong>Puzzle Solving:</strong> Tests the model's capability to solve multi-step chess puzzles (tactical reasoning).</li>
+      </ul>
+      <p>
+        The specific results for these tasks are detailed below.
+      </p>
+    </div>
+    
+    <h3 class="title is-4 has-text-centered">1. Basic Understanding</h3>
+    <div class="table-container">
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <caption>Basic understanding results. Thinking models such as O3 and Doubao-Seed-1-6-Thinking show strong chessboard understanding capabilities. Our post-training significantly improves the basic understanding capability.</caption>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>PMA (%)</th>
+            <th>Precision (%)</th>
+            <th>Recall (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>GPT-4.1</td><td>98.0</td><td>89.3</td><td>92.1</td></tr>
+          <tr><td>O3</td><td>98.5</td><td>98.5</td><td>98.5</td></tr>
+          <tr><td>DeepSeek-V3</td><td>97.0</td><td>81.8</td><td>75.3</td></tr>
+          <tr><td>DeepSeek-V3.1</td><td>89.0</td><td>87.5</td><td>87.4</td></tr>
+          <tr><td>DeepSeek-R1</td><td>100.0</td><td>99.2</td><td>98.4</td></tr>
+          <tr><td>Doubao-1-5-Pro-32k</td><td>76.0</td><td>50.6</td><td>56.2</td></tr>
+          <tr><td>Doubao-1-5-Lite-32k</td><td>51.5</td><td>33.3</td><td>30.3</td></tr>
+          <tr><td>Doubao-1-5-Thinking-Pro</td><td>99.5</td><td>98.0</td><td>98.0</td></tr>
+          <tr><td>Doubao-Seed-1-6-Thinking</td><td>100.0</td><td>99.9</td><td>99.9</td></tr>
+          <tr><td>Qwen3-235B-A22B</td><td>80.5</td><td>50.7</td><td>49.3</td></tr>
+          <tr><td>Claude-3.7-Sonnet</td><td>98.0</td><td>87.6</td><td>87.3</td></tr>
+          <tr><td>Gemini-2.5-Pro</td><td>100.0</td><td>98.5</td><td>96.7</td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="4"></td></tr>
+          <tr><td>Qwen3-8B</td><td>36.0</td><td>14.1</td><td>18.8</td></tr>
+          <tr><td>Qwen3-8B-Chess-SFT-Stage1</td><td>63.5 (+31.5)</td><td>20.6 (+5.9)</td><td>29.5 (+14.3)</td></tr>
+          <tr><td>Qwen3-8B-Chess-SFT-Stage2</td><td>70.5 (+7.0)</td><td>51.9 (+31.3)</td><td>45.3 (+15.8)</td></tr>
+          <tr><td>Qwen3-8B-Chess (SFT+RL)</td><td>79.0 (+8.5)</td><td>52.6 (+0.7)</td><td>50.1 (+4.8)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4 has-text-centered" style="margin-top: 2rem;">2. Move Selection</h3>
+    <div class="table-container" style="overflow-x: auto;">
+      <table class="table is-striped is-hoverable is-fullwidth is-size-7">
+        <caption>Move selection performance across four play modes with/without legal moves provision. We bold the highest LR, TR, and MAR within each group. LLMs still have significant room for improvement, especially when the legal moves are not provided.</caption>
+        <thead>
+          <tr>
+            <th rowspan="2">Mode</th>
+            <th rowspan="2">Model or Engine</th>
+            <th colspan="3">With Legal Moves</th>
+            <th colspan="3">Without Legal Moves</th>
+          </tr>
+          <tr>
+            <th>LR (%)</th>
+            <th>TR (%)</th>
+            <th>MAR (%)</th>
+            <th>LR (%)</th>
+            <th>TR (%)</th>
+            <th>MAR (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="14"><strong>Blitz</strong></td>
+            <td>Random Player</td><td>100.0</td><td>14.8</td><td>-1.1</td><td>/</td><td>/</td><td>/</td>
+          </tr>
+          <tr>
+            <td>Maia-1100</td><td>/</td><td>/</td><td>/</td><td>100.0</td><td>78.3</td><td>+107.6</td>
+          </tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="8"></td></tr>
+          <tr><td>GPT-4.1</td><td>97.5</td><td>25.9</td><td>+20.5</td><td>71.6</td><td><strong>29.3</strong></td><td><strong>+6.2</strong></td></tr>
+          <tr><td>Claude-3.7-Sonnet</td><td><strong>99.6</strong></td><td>26.1</td><td>+25.6</td><td>68.4</td><td>18.2</td><td>-17.7</td></tr>
+          <tr><td>DeepSeek-V3</td><td>99.1</td><td>18.5</td><td>+10.7</td><td>64.5</td><td>12.9</td><td>-27.7</td></tr>
+          <tr><td>DeepSeek-V3.1</td><td>93.4</td><td>26.7</td><td>+18.6</td><td>63.7</td><td>16.9</td><td>-23.6</td></tr>
+          <tr><td>Qwen3-235B-A22B</td><td>89.8</td><td>24.9</td><td>+29.0</td><td>64.2</td><td>17.0</td><td>-25.3</td></tr>
+          <tr><td>Qwen3-8B</td><td>96.2</td><td>13.4</td><td>+1.8</td><td>9.8</td><td>2.1</td><td>-79.5</td></tr>
+          <tr><td>Qwen3-8B-Chess-SFT-Stage1</td><td>86.8</td><td>13.6</td><td>-9.6</td><td>15.1</td><td>2.6</td><td>-74.9</td></tr>
+          <tr><td>Qwen3-8B-Chess-SFT-Stage2</td><td>96.9</td><td>23.4</td><td>+15.1</td><td>66.3</td><td>13.3</td><td>-22.1</td></tr>
+          <tr><td>Qwen3-8B-Chess (SFT+RL)</td><td>92.9</td><td><strong>40.2</strong></td><td><strong>+41.1</strong></td><td><strong>87.6</strong></td><td>20.2</td><td>-1.2</td></tr>
+          <tr><td>Seed-Coder-8B-Instruct</td><td>59.3</td><td>8.5</td><td>-36.1</td><td>4.5</td><td>1.0</td><td>-85.4</td></tr>
+          <tr><td>Seed-Coder-8B-Chess(SFT+RL)</td><td>99.5</td><td>29.5</td><td>+35.7</td><td>85.1</td><td>12.4</td><td>-9.0</td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="8"></td></tr>
+
+          <tr>
+            <td rowspan="5"><strong>Bullet</strong></td>
+            <td>GPT-4.1</td><td>98.7</td><td><strong>25.0</strong></td><td><strong>+20.8</strong></td><td>74.0</td><td><strong>28.7</strong></td><td><strong>+5.7</strong></td>
+          </tr>
+          <tr><td>Claude-3.7-Sonnet</td><td><strong>98.6</strong></td><td>22.5</td><td>+16.8</td><td><strong>75.2</strong></td><td>17.9</td><td>-9.4</td></tr>
+          <tr><td>DeepSeek-V3</td><td>98.9</td><td>18.8</td><td>+11.3</td><td>66.2</td><td>13.3</td><td>-21.8</td></tr>
+          <tr><td>DeepSeek-V3.1</td><td>80.6</td><td>16.1</td><td>-8.0</td><td>56.3</td><td>12.7</td><td>-35.7</td></tr>
+          <tr><td>Qwen3-235B-A22B</td><td>95.9</td><td>17.8</td><td>+4.5</td><td>69.1</td><td>15.9</td><td>-18.5</td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="8"></td></tr>
+
+          <tr>
+            <td rowspan="5"><strong>Standard</strong></td>
+            <td>DeepSeek-R1</td><td><strong>100.0</strong></td><td>32.7</td><td>+34.7</td><td>82.5</td><td>23.7</td><td>-1.0</td>
+          </tr>
+          <tr><td>Doubao-1-5-Thinking-Pro</td><td>99.7</td><td>32.9</td><td>+35.4</td><td>78.0</td><td>24.8</td><td>+3.0</td></tr>
+          <tr><td>Doubao-Seed-1-6-Thinking</td><td>99.8</td><td>39.1</td><td>+53.7</td><td>90.7</td><td>36.0</td><td>+32.0</td></tr>
+          <tr><td>Gemini-2.5-Pro</td><td>99.4</td><td>37.6</td><td>+46.5</td><td>85.5</td><td>40.5</td><td>+36.5</td></tr>
+          <tr><td>O3</td><td>99.6</td><td><strong>58.7</strong></td><td><strong>+80.1</strong></td><td><strong>98.0</strong></td><td><strong>62.0</strong></td><td><strong>+80.2</strong></td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="8"></td></tr>
+
+          <tr>
+            <td rowspan="9"><strong>Blindfold</strong></td>
+            <td>GPT-4.1</td><td>96.8</td><td>20.1</td><td>+12.7</td><td>72.7</td><td>20.2</td><td>+1.2</td>
+          </tr>
+          <tr><td>Claude-3.7-Sonnet</td><td>98.2</td><td>23.9</td><td>+21.5</td><td>77.3</td><td>18.9</td><td>-9.1</td></tr>
+          <tr><td>DeepSeek-V3</td><td>95.1</td><td>19.2</td><td>+16.2</td><td>78.5</td><td>14.9</td><td>-7.8</td></tr>
+          <tr><td>DeepSeek-V3.1</td><td>96.5</td><td>26.0</td><td>+27.2</td><td>66.0</td><td>13.7</td><td>-18.0</td></tr>
+          <tr><td>DeepSeek-R1</td><td>94.7</td><td>22.7</td><td>+14.0</td><td>44.6</td><td>10.9</td><td>-36.9</td></tr>
+          <tr><td>Qwen3-235B-A22B</td><td>96.1</td><td>19.9</td><td>+17.4</td><td>75.3</td><td>17.2</td><td>-10.4</td></tr>
+          <tr><td>Doubao-Seed-1-6-Thinking</td><td>97.8</td><td>32.1</td><td>+36.5</td><td>43.6</td><td>12.9</td><td>-30.5</td></tr>
+          <tr><td>Gemini-2.5-Pro</td><td>98.7</td><td>30.4</td><td>+23.5</td><td>68.7</td><td>21.5</td><td>-8.7</td></tr>
+          <tr><td>O3</td><td><strong>98.4</strong></td><td><strong>46.9</strong></td><td><strong>+63.2</strong></td><td><strong>86.9</strong></td><td><strong>43.5</strong></td><td><strong>+50.9</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4 has-text-centered" style="margin-top: 2rem;">3. Puzzle Solving</h3>
+    <div class="table-container" style="overflow-x: auto;">
+      <table class="table is-striped is-hoverable is-fullwidth is-size-7">
+        <caption>Puzzle solving accuracy when legal moves are provided. LLMs perform relatively poorly, with O3 standing out as the strongest.</caption>
+        <thead>
+          <tr>
+            <th rowspan="2">Model or Engine</th>
+            <th colspan="8">Puzzle Solving Accuracy (%)</th>
+          </tr>
+          <tr>
+            <th>200-600</th>
+            <th>600-1000</th>
+            <th>1000-1400</th>
+            <th>1400-1800</th>
+            <th>1800-2200</th>
+            <th>2200-2600</th>
+            <th>2600-3000</th>
+            <th>Overall</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Stockfish (Depth=20)</td><td>100.0</td><td>100.0</td><td>100.0</td><td>100.0</td><td>99.3</td><td>97.9</td><td>91.5</td><td><strong>98.4</strong></td></tr>
+          <tr><td>Maia-1100</td><td>98.6</td><td>97.2</td><td>91.6</td><td>82.5</td><td>72.7</td><td>51.0</td><td>28.2</td><td>74.6</td></tr>
+          <tr><td>Random Player</td><td>1.4</td><td>1.4</td><td>2.1</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.7</td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="9"></td></tr>
+          <tr><td>GPT-4.1</td><td>18.9</td><td>14.0</td><td>8.4</td><td>4.9</td><td>1.4</td><td>2.8</td><td>0.0</td><td>7.2</td></tr>
+          <tr><td>Claude-3.7-Sonnet</td><td>18.2</td><td>16.1</td><td>4.9</td><td>4.2</td><td>5.6</td><td>1.4</td><td>0.0</td><td>7.2</td></tr>
+          <tr><td>DeepSeek-V3</td><td>11.9</td><td>7.7</td><td>2.1</td><td>0.7</td><td>0.0</td><td>0.7</td><td>0.0</td><td>3.3</td></tr>
+          <tr><td>DeepSeek-V3.1</td><td>13.3</td><td>10.5</td><td>8.4</td><td>4.9</td><td>1.4</td><td>2.8</td><td>7.0</td><td>6.0</td></tr>
+          <tr><td>Qwen3-235B-A22B</td><td>24.5</td><td>18.2</td><td>9.8</td><td>5.6</td><td>4.2</td><td>1.4</td><td>0.0</td><td>9.1</td></tr>
+          <tr><td>Qwen3-8B</td><td>2.8</td><td>4.9</td><td>2.1</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.4</td></tr>
+          <tr><td>Qwen3-8B-Chess</td><td>31.5</td><td>16.8</td><td>10.5</td><td>7.0</td><td>5.6</td><td>2.1</td><td>0.0</td><td><strong>10.5</strong></td></tr>
+          <tr><td>Seed-Coder-8B-Instruct</td><td>0.0</td><td>1.4</td><td>0.0</td><td>0.0</td><td>1.0</td><td>0.0</td><td>0.0</td><td>0.4</td></tr>
+          <tr><td>Seed-Coder-8B-Chess</td><td>23.8</td><td>8.4</td><td>4.9</td><td>3.5</td><td>4.9</td><td>2.8</td><td>0.0</td><td>6.9</td></tr>
+          <tr style="border-top: 2px solid #ccc;"><td colspan="9"></td></tr>
+          <tr><td>O3</td><td>97.9</td><td>90.2</td><td>79.7</td><td>62.9</td><td>46.5</td><td>10.5</td><td>1.4</td><td><strong>55.6</strong></td></tr>
+          <tr><td>Gemini-2.5-Pro</td><td>37.1</td><td>24.5</td><td>18.2</td><td>9.1</td><td>4.2</td><td>3.5</td><td>1.4</td><td>14.0</td></tr>
+          <tr><td>Doubao-Seed-1-6-Thinking</td><td>27.3</td><td>23.8</td><td>11.9</td><td>7.7</td><td>4.2</td><td>1.4</td><td>2.1</td><td>11.2</td></tr>
+          <tr><td>DeepSeek-R1</td><td>23.1</td><td>20.3</td><td>7.0</td><td>4.2</td><td>2.8</td><td>0.7</td><td>0.7</td><td>8.4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">♟️ Chess Post-training Pipeline</h2>
+      <div class="content has-text-justified">
+        <p>
+          To establish a strong baseline within ChessArena and validate the efficacy of our testbed, we implemented a comprehensive post-training pipeline. We distilled the reasoning data generated by high-performing models—specifically GPT-4.1 and Doubao-Seed-1-6-Thinking.
+        </p>
+        <p>
+          This distilled data was first used for Supervised Fine-Tuning (SFT). Subsequently, we applied Reinforcement Learning (RL) based on the GRPO method to further enhance the models' strategic reasoning and playing strength.
+        </p>
+        <p>
+          This process yielded two strong specialized models: Qwen3-8B-Chess (based on Qwen3-8B) and Seed-Coder-8B-Chess (based on Seed-Coder-8B-Instruct). As evidenced by the results in the Chess Competitions and Fine-Grained Evaluation sections above, these models demonstrate a significant enhancement in chess reasoning capabilities, substantially closing the gap with much larger state-of-the-art models.
+        </p>
+        <p>
+          We have open-sourced our data and models, and you can click the link at the top of the page to view them.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">🚀 Generalization Experiments</h2>
+    <div class="content has-text-justified">
+      <p>
+        To test the broader impact of chess post-training, we evaluated the models' generalization ability on established Code, Math, and Reasoning benchmarks. This helps determine if the strategic reasoning enhanced in the chess domain transfers to other cognitive tasks.
+      </p>
+    </div>
+
+    <div class="table-container" style="overflow-x: auto; margin-bottom: 2rem;">
+      <table class="table is-striped is-hoverable is-fullwidth is-size-7">
+        <caption>Performance of Qwen3-8B and its Post-Trained Variants on External Benchmarks.</caption>
+        <thead>
+          <tr>
+            <th><strong>Model Variant</strong></th>
+            <th>LiveCodeBench</th>
+            <th>AIME2025</th>
+            <th>ZebraLogic</th>
+            <th>BigCodeBench</th>
+            <th>CruxEval</th>
+            <th>DROP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="is-selected">
+            <td><strong>Qwen3-8B (Baseline)</strong></td>
+            <td>25.19</td>
+            <td>18.61</td>
+            <td>25.90</td>
+            <td>41.32</td>
+            <td>73.25</td>
+            <td>85.15</td>
+          </tr>
+          <tr><td colspan="7" class="has-text-weight-bold">I. Chess Training Only</td></tr>
+          <tr>
+            <td class="pl-4">Qwen3-8B-Chess-SFT-Stage2</td>
+            <td>27.48</td>
+            <td>15.43</td>
+            <td>30.40</td>
+            <td>41.40</td>
+            <td>68.00</td>
+            <td>82.83</td>
+          </tr>
+          <tr>
+            <td class="pl-4">Qwen3-8B-Chess (SFT+RL)</td>
+            <td>25.19</td>
+            <td>19.30</td>
+            <td>48.00</td>
+            <td>39.82</td>
+            <td>72.25</td>
+            <td>83.58</td>
+          </tr>
+          <tr><td colspan="7" class="has-text-weight-bold">II. Multi-Task RL (with Chess-SFT)</td></tr>
+          <tr>
+            <td class="pl-4">+Math-RL</td>
+            <td>25.19</td>
+            <td>19.70</td>
+            <td>42.40</td>
+            <td>39.39</td>
+            <td>73.25</td>
+            <td>84.12</td>
+          </tr>
+          <tr>
+            <td class="pl-4">+Code-RL</td>
+            <td>32.82</td>
+            <td>16.21</td>
+            <td>32.30</td>
+            <td>40.09</td>
+            <td>72.50</td>
+            <td>83.83</td>
+          </tr>
+          <tr>
+            <td class="pl-4">+Math+Code-RL</td>
+            <td>28.24</td>
+            <td>18.61</td>
+            <td>38.30</td>
+            <td>40.26</td>
+            <td>71.25</td>
+            <td>83.34</td>
+          </tr>
+          <tr>
+            <td class="pl-4">+Math+Chess-RL</td>
+            <td>26.72</td>
+            <td>19.32</td>
+            <td>39.00</td>
+            <td>40.09</td>
+            <td>72.09</td>
+            <td>84.01</td>
+          </tr>
+          <tr>
+            <td class="pl-4">+Math+Code+Chess-RL</td>
+            <td>30.53</td>
+            <td>17.96</td>
+            <td>38.00</td>
+            <td>40.30</td>
+            <td>72.22</td>
+            <td>83.84</td>
+          </tr>
+          <tr><td colspan="7" class="has-text-weight-bold">III. Single-Task RL (without Chess-SFT)</td></tr>
+          <tr>
+            <td class="pl-4">+Math-RL</td>
+            <td>25.19</td>
+            <td>21.30</td>
+            <td>28.00</td>
+            <td>42.37</td>
+            <td>77.47</td>
+            <td>85.53</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content has-text-justified">
+      <h3 class="title is-4">Key Findings</h3>
+      <ol>
+        <li>
+          Models fine-tuned via Chess Supervised Fine-Tuning (SFT) consistently demonstrate a degree of generalization ability to the logical reasoning benchmark, ZebraLogic. Notably, models that underwent Chess SFT show a significant improvement in their ZebraLogic scores (up to 48.00 for Qwen3-8B-Chess (SFT+RL)) after the RL phase compared to the baseline (25.90).
+        </li>
+        <li>
+          Incorporating a certain amount of Chess data into the Reinforcement Learning (RL) dataset contributes to the generalization of Code capabilities, particularly on the LiveCodeBench. Comparisons (e.g., Math+Code+Chess-RL vs. Math+Code-RL) reveal that RL models augmented with Chess data achieve an improvement in their LiveCodeBench scores.
+        </li>
+      </ol>
+      
+      <h3 class="title is-4" style="margin-top: 2rem;">Qualitative Analysis of Reasoning Improvement</h3>
+      <p>
+        In our paper, we have included additional case studies (e.g., in Appendix G.3) that illustrate the change in the model's reasoning process. All puzzles demonstrate that the model's reasoning before chess training was often superficial, frequently exhibiting steps skipped or known conditions forgotten.
+      </p>
+      <p>
+        The model's reasoning after post-training in chess is not confined to a specific format but rigorously follows known conditions step-by-step, with demonstrable adjustments when errors occur (Puzzle 3). This indicates that the chess post-training enhances the model's reasoning process, making it more rigorous and leading to higher-quality answers. You can find the relevant case studies in our paper.
+      </p>
+    </div>
+  </div>
+</section>
+
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Paper Page</h2>
       <div class="content has-text-justified">
         <p>
-For more information, please refer our paper https://arxiv.org/abs/2509.24239.
+If you are interested in ChessArena, please contact us at jinchengliu@smail.nju.edu.cn. You can also refer to our paper at https://arxiv.org/abs/2509.24239 for more information.
         </p>
       </div>
       <!-- Add your framework diagram image here -->
