@@ -1049,6 +1049,9 @@ In summary, we have launched the ChessArena benchmark—a chess platform that su
         <li>
           Incorporating a certain amount of Chess data into the Reinforcement Learning (RL) dataset contributes to the generalization of Code capabilities, particularly on the LiveCodeBench. Comparisons (e.g., Math+Code+Chess-RL vs. Math+Code-RL) reveal that RL models augmented with Chess data achieve an improvement in their LiveCodeBench scores.
         </li>
+        <li>
+          However, the use of Chess SFT may lead to performance degradation on other benchmarks (e.g., BigCode-Bench, CruxEval); mixing Chess data for RL could also result in a slight performance decline on mathematical tasks (i.e., AIME2025).
+        </li>
       </ol>
       
       <h3 class="title is-4" style="margin-top: 2rem;">Qualitative Analysis of Reasoning Improvement</h3>
